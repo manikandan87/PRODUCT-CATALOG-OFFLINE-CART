@@ -1,6 +1,7 @@
 package com.ecommerce.ecom.Activity.ProductDetails
 
 import android.os.Bundle
+import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.ImageButton
@@ -34,6 +35,7 @@ class ProductDetailsActivity : AppCompatActivity() {
     private lateinit var tvPrice : TextView
     private lateinit var tvRating : TextView
     private lateinit var tvCategory : TextView
+    private lateinit var tvStock : TextView
     private lateinit var tvBrand : TextView
     private lateinit var tvTitle : TextView
     private lateinit var ivProduct : ImageView
@@ -84,6 +86,7 @@ class ProductDetailsActivity : AppCompatActivity() {
         tvPrice = findViewById(R.id.tvPrice)
         tvRating = findViewById(R.id.tvRating)
         tvCategory = findViewById(R.id.tvCategory)
+        tvStock = findViewById(R.id.tvStock)
         tvBrand = findViewById(R.id.tvBrand)
         tvTitle = findViewById(R.id.tvTitle)
         ivProduct = findViewById(R.id.ivProduct)
@@ -139,15 +142,15 @@ class ProductDetailsActivity : AppCompatActivity() {
 
         productDetailViewModel.cartItem.observe(this) { cartItem ->
             if (cartItem != null && cartItem.quantity > 0) {
-                llQuantity.visibility = android.view.View.VISIBLE
-                btnAddToCart.visibility = android.view.View.GONE
-                btnGoToCart.visibility = android.view.View.VISIBLE
+                llQuantity.visibility = View.VISIBLE
+                btnAddToCart.visibility = View.GONE
+                btnGoToCart.visibility = View.VISIBLE
                 tvQuantity.text = cartItem.quantity.toString()
                 updateCartButton()
             } else {
-                llQuantity.visibility = android.view.View.GONE
-                btnAddToCart.visibility = android.view.View.VISIBLE
-                btnGoToCart.visibility = android.view.View.GONE
+                llQuantity.visibility = View.GONE
+                btnAddToCart.visibility = View.VISIBLE
+                btnGoToCart.visibility = View.GONE
                 updateCartButton()
             }
         }
@@ -165,9 +168,9 @@ class ProductDetailsActivity : AppCompatActivity() {
 
         if (!product.category.isNullOrEmpty()) {
             tvCategory.text = product.category
-            tvCategory.visibility = android.view.View.VISIBLE
+            tvCategory.visibility = View.VISIBLE
         } else {
-            tvCategory.visibility = android.view.View.GONE
+            tvCategory.visibility = View.GONE
         }
 
         Glide.with(ivProduct.context)
@@ -180,11 +183,17 @@ class ProductDetailsActivity : AppCompatActivity() {
 
         if (!product.brand.isNullOrEmpty()) {
             tvBrand.text = "Brand: ${product.brand}"
-            tvBrand.visibility = android.view.View.VISIBLE
+            tvBrand.visibility = View.VISIBLE
         } else {
-            tvBrand.visibility = android.view.View.GONE
+            tvBrand.visibility = View.GONE
         }
 
+        if(product.stock != 0){
+            tvStock.text = "Stock: ${product.stock}"
+            tvStock.visibility = View.VISIBLE
+        }else{
+            tvStock.visibility = View.GONE
+        }
     }
 
     private fun updateCartButton() {

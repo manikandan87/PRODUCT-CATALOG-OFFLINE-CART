@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/main"
     android:background="@color/white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,9 +15,9 @@
             android:id="@+id/ivBack"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:background="@drawable/ic_round_background"
             android:padding="8dp"
             android:src="@drawable/ic_arrow_back"
-            android:background="@drawable/ic_round_background"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -40,14 +40,32 @@
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/ivProduct" />
 
-        <TextView
-            android:id="@+id/tvBrand"
+
+        <LinearLayout
+            android:id="@+id/lyBrand"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:textColor="@color/gray"
-            android:textSize="14sp"
-            app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle">
+
+            <TextView
+                android:id="@+id/tvBrand"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/gray"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvStock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/gray"
+                android:gravity="end"
+                android:textSize="14sp" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/tvCategory"
@@ -60,7 +78,7 @@
             android:textColor="@color/black"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvBrand" />
+            app:layout_constraintTop_toBottomOf="@id/lyBrand" />
 
         <TextView
             android:id="@+id/tvRating"
@@ -108,8 +126,7 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:backgroundTint="@color/light_gray"
-                android:src="@drawable/ic_minus"
-                />
+                android:src="@drawable/ic_minus" />
 
             <TextView
                 android:id="@+id/tvQuantity"
@@ -126,7 +143,7 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:backgroundTint="@color/light_gray"
-                android:src="@drawable/ic_plus"/>
+                android:src="@drawable/ic_plus" />
         </LinearLayout>
 
         <Button
